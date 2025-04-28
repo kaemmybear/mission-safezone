@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission SafeZone</title>
+  <style>
+    body {
+      font-family: 'mali', sans-serif;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+      color: #ffffff;
+    }
+    .background-img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .overlay-img {
+    position: absolute;
+    top: -5%; /* ปรับให้ลอยขึ้นจากขอบบน */
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 1;
+    animation: float 2s ease-in-out infinite;
+  }
+  @keyframes float {
+  0% {
+    transform: translateY(0); /* เริ่มต้นที่ตำแหน่งเดิม */
+  }
+  50% {
+    transform: translateY(-15px); /* ลอยขึ้น 15px */
+  }
+  100% {
+    transform: translateY(0); /* กลับไปที่ตำแหน่งเดิม */
+  }
+}
+.character-img {
+  position: absolute;
+  top: 30%; /* ปรับให้ลอยขึ้นจากขอบบน */
+  width: 100%; /* กำหนดขนาดของภาพ */
+  height: auto; /* ป้องกันไม่ให้ภาพเบี้ยว */
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  animation: float 2s ease-in-out infinite;
+}
+
+
+    .container {
+      position: relative;
+      z-index: 1; /* ลอยอยู่เหนือพื้นหลัง */
+      max-width: 700px;
+      margin: 60px auto; /* เดิม 100px auto → ลดลง */
+      padding: 20px 20px 30px; /* padding-top น้อยลง */
+      border-radius: 20px;
+      text-align: center;
+    }
+    .message {
+      font-size: 25px;
+      margin-bottom: 10px;
+      min-height: 60px;
+      line-height: 2;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      font-family: 'Poppins Rounded';
+      border: none;
+      border-radius: 30px;
+      background-color: #ff5ca8;
+      color: white;
+      cursor: pointer;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); /* เงาคมชัดไม่เบลอ */
+    }
+    button:hover {
+      background-color: #e04590;
+      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.3); /* เงาคมชัดไม่เบลอเมื่อ hover */
+    }
+  </style>
+</head>
+<body>
+
+  <img id="bgImage" class="background-img" src="" alt="background" />
+  <img id="overlayImg" class="overlay-img" src="" alt="overlay" style="display: none;" />
+  <img id="characterImg" class="character-img" src="" alt="character" style="display: none;" />
+
+  <div class="container" id="storyContainer">
+    <div class="message" id="storyText"></div>
+    <button id="nextBtn">NEXT</button>
+  </div>
+
+  <script>
+    const storySteps = [
+      {
+        text: "สวัสดี! ฉันชื่อเรย์ เป็นผู้พิทักษ์ที่คอยดูแลเด็ก ๆ ทุกคน",
+        img: "assets/intro/intro1.png",
+        character: "assets/intro/ray1.png"
+      },
+      {
+        text: "หนูรู้ไหม? บนโลกใบนี้มีคนไม่ดีที่พยายามเอาเปรียบพวกหนูอยู่เต็มไปหมด",
+        img: "assets/intro/intro2.png",
+        character: "assets/intro/ray2.png"
+      },
+      {
+        text: "ฉันอยากช่วยปกป้องทุกคน แต่ฉันทำคนเดียวไม่ไหว ดังนั้น ฉันขอมอบหน้าที่สำคัญให้กับหนู ๆ ทุกคน!",
+        img: "assets/intro/intro2.png",
+        character: "assets/intro/ray2.png"
+      },
+      {
+        text: "ออกเดินทางไปยังหมู่บ้านแห่งความปลอดภัย เพื่อเรียนรู้และทำภารกิจพิเศษ",
+        img: "assets/intro/intro3.png",
+        overlay: "assets/intro/village.png"
+        
+      },
+      {
+        text: "สะสมตราประทับผู้พิทักษ์ ให้ครบทั้ง 4 ดวง เพื่อพิสูจน์ว่าหนูเก่งและพร้อมที่จะดูแลตัวเองได้อย่างปลอดภัย!",
+        img: "assets/intro/intro5.png",
+        overlay: "assets/intro/award.png"
+      },
+      {
+        text: "ถ้าพร้อมแล้ว ไปเริ่มเรียนรู้กันเถอะ!",
+        img: "assets/intro/intro6.png",
+        character: "assets/intro/ray6.png"
+      },
+    ];
+
+    let currentStep = 0;
+    const storyText = document.getElementById("storyText");
+    const nextBtn = document.getElementById("nextBtn");
+    const bgImage = document.getElementById("bgImage");
+
+    function showStep(step) {
+  const current = storySteps[step];
+  storyText.innerText = current.text;
+  bgImage.src = current.img;
+
+  // เช็กว่ามี overlay หรือไม่
+  if (current.overlay) {
+    overlayImg.src = current.overlay;
+    overlayImg.style.display = "block";
+  } else {
+    overlayImg.style.display = "none";
+  }
+
+  // เช็กว่ามี character หรือไม่
+  if (current.character) {
+    characterImg.src = current.character;
+    characterImg.style.display = "block";
+  } else {
+    characterImg.style.display = "none";
+  }
+
+  // เช็กว่าเป็นขั้นตอนสุดท้ายหรือไม่
+  if (step === storySteps.length - 1) {
+    nextBtn.innerText = "GO!";
+    nextBtn.onclick = () => {
+      window.location.href = "map.html"; // ไปยังหน้าแรกของเกม
+    };
+  }
+}
+
+    nextBtn.addEventListener("click", () => {
+      currentStep++;
+      if (currentStep < storySteps.length) {
+        showStep(currentStep);
+      }
+    });
+
+    // เริ่มต้น
+    showStep(currentStep);
+  </script>
+
+<audio autoplay loop>
+  <source src="assets/puppy-paws-222530.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+</body>
+</html>

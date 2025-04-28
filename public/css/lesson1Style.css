@@ -1,0 +1,251 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: block; /* เปลี่ยนจาก flex เป็น block */
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: white; /* เพิ่มพื้นหลังขาว */
+}
+
+.container {
+    position: fixed;  /* ทำให้ container อยู่ในตำแหน่งคงที่ */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white; /* พื้นหลังขาว */
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* << เพิ่มบรรทัดนี้ */
+}
+
+.layer1 { z-index: -2;}
+.layer2 { 
+    z-index: -1;
+}
+.layer3 { z-index: 0;}
+.layer4 { z-index: -2;}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    40% { opacity: 0.6; }
+    60% { opacity: 0.8; }
+    80% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+
+.game-container {
+    position: absolute;
+    top: 30%; /* ตั้งให้อยู่กลางแนวตั้ง */
+    left: 50%; /* ตั้งให้อยู่กลางแนวนอน */
+    transform: translate(-50%, -50%); /* ย้ายตำแหน่งให้ตรงกลาง */
+    display: inline-block;
+    width: 25vw; /* ลดขนาด width ให้เล็กลง */
+    max-width: 350px; /* จำกัดขนาดสูงสุด */
+    height: auto; /* ปรับความสูงให้เหมาะสมกับ aspect ratio */
+}
+
+.character img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* ปรับความสูงให้เหมาะสม */
+    object-fit: contain; /* คงอัตราส่วนของภาพ */
+}
+
+.buttons {
+    position: absolute;
+    top: 15%; /* ปรับปุ่มให้คงที่สัมพันธ์กับหน้าจอ */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#hair_front {
+    z-index: 1; /* Front hair should appear in front */
+}
+
+#hair_back {
+    z-index: -1; /* Back hair should appear behind the front hair */
+}
+
+#accessory {
+    z-index: 2; /* Accessory should appear above hair */
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+button img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain; /* คงอัตราส่วน */
+}
+
+button:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.popup-content {
+    position: relative;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#popup-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 330px;
+    right: 210px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+}
+
+.close-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+}
+
+.next-page-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 60px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.next-page-btn img {
+    width: 80px;
+    height: auto;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.next-page-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.next-button {
+    position: fixed;
+    bottom: 10vh; /* ปรับตำแหน่งให้สัมพันธ์กับขนาดหน้าจอ */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 80px;
+    height: auto;
+}
+
+.next-button img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.next-button:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes firework {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.firework {
+    position: absolute;
+    width: 30px; /* ขนาดพลุเล็กลง */
+    height: 30px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 30%, rgba(255, 165, 0, 1) 100%); /* เปลี่ยนสีเป็นแดงและส้ม */
+    border-radius: 50%;
+    opacity: 0;
+    animation: firework 1.5s ease-out forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.firework:nth-child(1) {
+    animation-delay: 0s;
+    animation-timing-function: ease-out;
+}
+
+.firework:nth-child(2) {
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in-out;
+}
+
+.firework:nth-child(3) {
+    animation-delay: 0.4s;
+    animation-timing-function: ease-in;
+}
+
+.firework:nth-child(4) {
+    animation-delay: 0.6s;
+    animation-timing-function: ease-out;
+}
+
+.firework:nth-child(5) {
+    animation-delay: 0.8s;
+    animation-timing-function: ease-in-out;
+}

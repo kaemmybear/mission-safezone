@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* ให้อยู่ด้านหลังเนื้อหาหลัก */
+}
+
+.layer4 { z-index: 3; }
+.layer5 { z-index: 2; }
+.base-layer { z-index: 1; }
+
+.layer2 {
+    position: absolute;
+    width: 150px; /* หรือขนาดที่ต้องการ */
+    height: auto;
+    top: 700px; /* พิกัดจากบน */
+    left: 1200px; /* พิกัดจากซ้าย */
+    z-index: 5;
+}
+
+.content {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.logo-op {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34vw;
+    max-width: 550px;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.logo {
+    position: relative;
+    width: 34vw;
+    max-width: 550px;
+    z-index: 1;
+}
+
+.start-button {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 20vw;
+    max-width: 180px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    z-index: 9;
+}
+
+.start-button img {
+    width: 100%;
+    height: auto;
+}
+
+.start-button:hover {
+    transform: translate(-50%, 0%) scale(1.1);
+}
+
+/* === Media Queries for Small Screens === */
+@media (max-width: 768px) {
+    .logo, .logo-op {
+        width: 60vw;
+    }
+
+    .start-button {
+        width: 40vw;
+        top: 115%;
+    }
+
+    .layer2 {
+        width: 20vw;
+        top: 65%;
+        left: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo, .logo-op {
+        width: 75vw;
+    }
+
+    .start-button {
+        width: 50vw;
+        top: 120%;
+    }
+
+    .content {
+        top: 50%;
+    }
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    40% { opacity: 0.6; }
+    60% { opacity: 0.8; }
+    80% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+  
+.layer4 {
+    z-index: 3;
+    animation: flicker 2s infinite ease-in-out;
+  }
+
+.character {
+    position: absolute;  /* ใช้ absolute เพื่อให้ตำแหน่งยืดหยุ่น */
+    width: 30vw;  /* ขนาดตัวละครจะขยายตามความกว้างของหน้าจอ (30% ของความกว้างหน้าจอ) */
+    max-width: 400px;  /* ขนาดสูงสุดไม่เกิน 400px */
+    height: auto;  /* ปรับความสูงให้เหมาะสมตามขนาดภาพ */
+    left: 100%;  /* ตั้งตำแหน่งตัวละครให้อยู่กลางแนวนอน */
+    top: 50%;  /* ตั้งตำแหน่งตัวละครให้อยู่กลางแนวตั้ง */
+    transform: translateX(-20%) translateY(20%);  /* ขยับตัวละครลงจากกลาง 10% */
+    z-index: 5;
+    animation: moveUpDown 1s ease-in-out infinite;
+  }
+
+  @keyframes moveUpDown {
+    0% {
+      bottom: 15%;
+    }
+    50% {
+      bottom: 20%; /* ขยับขึ้น */
+    }
+    100% {
+      bottom: 15%; /* ขยับลง */
+    }
+  }
+  
+.character-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* ให้ภาพตัวละครใช้ขนาดเต็มของ .character */
+    height: auto;
+    z-index: 6;
+  }
+  
+.hand {
+    position: absolute;
+    width: 25vw;  /* ขนาดแขนจะขยายตามความกว้างของหน้าจอ (25% ของความกว้างหน้าจอ) */
+    max-width: 250px;  /* ขนาดสูงสุดของแขน */
+    top: 56px;  /* ปรับตำแหน่งของแขนให้ต่ำกว่ากลาง */
+    left: 0;  /* ตั้งตำแหน่งแขนให้ตรงกลาง */
+    transform: translateX(-50%) translateY(-10%);  /* ปรับตำแหน่งของแขน */
+    z-index: 5;
+    animation: move-hand 2s infinite alternate ease-in-out;
+  }
+  
+.wing {
+    position: absolute;
+    width: 100%;  /* ขนาดปีกตามขนาดหน้าจอ */
+    top: 50px;  /* ปรับตำแหน่งของปีก */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10%);
+    z-index: 4;
+  }
+  
+  /* Keyframes สำหรับการเคลื่อนไหวของแขน */
+@keyframes move-hand {
+    0% {
+      transform: rotate(0deg); /* แขนอยู่ที่ตำแหน่งเริ่มต้น */
+    }
+    50% {
+      transform: rotate(-20deg); /* แขนขยับไปทางซ้าย */
+    }
+    100% {
+      transform: rotate(10deg); /* แขนขยับไปทางขวา */
+    }
+  }
+  

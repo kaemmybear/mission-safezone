@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+.container {
+    width: 90%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    margin-top: -60px; /* ขยับขึ้น 50px */
+}
+
+.container img {
+    cursor: pointer; /* ให้ภาพทำงานเป็นปุ่ม */
+    transition: transform 0.2s ease-in-out; /* เพิ่มการเปลี่ยนแปลงเมื่อคลิก */
+}
+
+.container img:hover {
+    transform: scale(1.1); /* ขยายขนาดภาพเมื่อ hover */
+}
+
+.item {
+    display: flex;
+    flex-direction: column; /* ทำให้ไอคอนอยู่บน ตึกอยู่ล่าง */
+    align-items: center; /* จัดให้อยู่ตรงกลาง */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 5vw;
+    max-width: 50px; /* ปรับขนาดไอคอน */
+    height: auto;
+    margin-bottom: 80px; /* ระยะห่างระหว่างไอคอนกับตึก */
+    margin-right: 40px;
+}
+
+.b1 {
+    width: 20vw;
+    max-width: 180px; /* ปรับขนาดรูปภาพ */
+    height: auto;
+    margin-right: 40px;
+}
+
+.b2 {
+    width: 25vw;
+    max-width: 330px; /* ปรับขนาดรูปภาพ */
+    height: auto;
+    margin-right: 40px;
+}
+
+.b3 {
+    width: 20vw;
+    max-width: 220px; /* ปรับขนาดรูปภาพ */
+    height: auto;
+    margin-right: 40px;
+}
+
+.b4 {
+    width: 25vw;
+    max-width: 330px; /* ปรับขนาดรูปภาพ */
+    height: auto;
+}
+
+.finish-button {
+    position: fixed;
+    bottom: 5vh;
+    left: 50%;
+    margin-left: -75px; /* ปรับครึ่งหนึ่งของความกว้างปุ่ม (150px / 2) */
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.finish-button img {
+    width: 50%;
+}
+
+.finish-button:hover {
+    transform: scale(1.1);
+}
+
+.guide {
+    position: absolute;
+    top: 0;  /* อยู่ที่ขอบบนของหน้าจอ */
+    left: 0; /* อยู่ที่ขอบซ้ายของหน้าจอ */
+    width: 30%;
+    height: 50px;
+    margin-left: 40px;
+    margin-top: 30px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.ray {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    object-fit: cover;
+    z-index: 1; 
+}
+
+.background {
+    position: absolute;
+    width: 1920px; /* ขนาดคงที่ 1920px */
+    height: 1080px; /* ขนาดคงที่ 1080px */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* จัดตำแหน่งพื้นหลังให้อยู่กลางจอ */
+    object-fit: cover; /* ทำให้ภาพครอบคลุมพื้นที่ทั้งหมด */
+    z-index: -1;
+}

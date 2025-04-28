@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Mission SafeZone</title>
+  <link rel="stylesheet" href="public/css/lesson3Style.css">
+</head>
+<body>
+  <!-- intro -->
+  <div class="intro-container">
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <button id="close-btn" class="close-btn">
+          <img src="assets/dressup/ok-btn.png" alt="Close">
+        </button>
+        <img id="popup-image" src="assets/LV3/popup.png" alt="Pop-up Image">
+      </div>
+    </div>
+    <img src="assets/LV3/word.png" alt="Background" class="background-image layer4">
+    <img src="assets/LV3/bgIn.png" alt="Background" class="background-image">
+    <div class="intro-text" id="introText">สวัสดีจ้า! ฉันชื่อเชอรี่ เป็นผู้พิทักษ์ที่คอยดูแลเด็กๆ ทุกคน</div>
+    <button id="nextBtn" class="next-button">NEXT</button>
+    </div>
+
+  <script>
+    // การปิดป๊อปอัพเมื่อคลิกปุ่ม
+    const closeBtn = document.getElementById('close-btn');
+    const popup = document.getElementById('popup');
+
+    closeBtn.addEventListener('click', function() {
+      popup.style.display = 'none'; // ซ่อนป๊อปอัพเมื่อคลิกปุ่มปิด
+    });
+  </script>
+
+  <div class="container" id="page1" style="display:none;">
+    <img src="assets/LV3/bg.png" alt="Background" class="bg">
+    <img src="assets/LV3/board.png" alt="Board" class="board">
+    <div class="step-container">
+      <img src="assets/LV3/step1.png" alt="Step 1" class="step-image active">
+      <img src="assets/LV3/step2.png" alt="Step 2" class="step-image">
+      <img src="assets/LV3/step3.png" alt="Step 3" class="step-image">
+    </div>
+    <img src="assets/LV3/ray.png" alt="Ray character" class="ray">
+
+    <div class="guide">
+      <div class="guide"><img src="assets/LV3/guide.png" alt="Rguide" class="Rguide"></div>
+    </div>
+
+    <button class="next-page-btn" onclick="showPage('page2')">
+      <img src="assets/finish-btn.png" alt="Next">
+    </button>  
+  </div>
+
+  <!-- page2 -->
+  <div class="container" id="page2" style="display:none;">
+    <!-- Add content for page2 here -->
+    <img src="assets/LvDone/lv3.png" class="background-image layer3">
+    <img src="assets/LvDone/shadow.png" class="background-image layer2">
+    <img src="assets/LvDone/bg.png" class="background-image layer1">
+
+    <a href="map.html">
+      <img src="assets/next-btn.png" alt="Map Button" class="map-button">
+    </a>
+
+  </div>
+
+  <script src="js/script3.js"></script>
+
+  <script>
+
+    // Your page switching function
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.container');
+      pages.forEach(page => page.style.display = 'none'); // Hide all pages
+      
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) {
+        targetPage.style.display = 'block'; // Show the target page
+        
+        // เล่น confetti เมื่อเข้า page2
+        if (pageId === 'page2') {
+          manager.addConfetti();  // Call the function to show confetti on page2
+          
+          // เล่นเพลง tada-fanfare เมื่อเปิด page2
+          const tadaSound = new Audio('assets/tada-fanfare-a-6313.mp3');
+          tadaSound.play();
+        }
+      } else {
+        console.error(`Page with ID "${pageId}" not found.`);
+      }
+    }
+  
+    let introStep = 0;
+    const introText = document.getElementById("introText");
+    const nextBtn = document.getElementById("nextBtn");
+    const introContainer = document.querySelector(".intro-container");
+    const mainContainer = document.querySelector(".container");
+  
+    const introSteps = [
+      "ถ้าเกิดอันตรายขึ้น แต่หนูไม่สามารถร้องขอความช่วยเหลือได้ จะทำยังไงดีล่ะ?",
+      "หนูสามารถใช้ 'สัญญาณมือขอความช่วยเหลือ' ที่ทุกคนเข้าใจได้ทันที!",
+      "แค่ทำตาม 3 ขั้นตอนง่ายๆ ก็สามารถขอความช่วยเหลือได้แล้ว",
+      "เอาล่ะ ถ้าพร้อมแล้ว ยกมือขึ้นมาทำตามกันเลย!"
+    ];
+  
+    function showIntroStep(step) {
+      introText.innerText = introSteps[step];
+      if (step === introSteps.length - 1) {
+        nextBtn.innerText = "OK!";
+        nextBtn.onclick = () => {
+          introContainer.style.display = "none";
+          mainContainer.style.display = "block";
+        };
+      }
+    }
+  
+    nextBtn.addEventListener("click", () => {
+      introStep++;
+      if (introStep < introSteps.length) {
+        showIntroStep(introStep);
+      }
+    });
+  
+    // เริ่มต้นแนะนำตัว
+    showIntroStep(introStep);
+  </script>
+
+  <audio autoplay loop>
+    <source src="assets/cubs-puppies-and-kittens-223658.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+</body>
+</html>

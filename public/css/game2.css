@@ -1,0 +1,86 @@
+/* ทำให้พื้นหลังขนาดพอดีกับหน้าจอ */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ตั้งค่า container ให้เต็มหน้าจอ */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ให้ขนาดเต็มหน้าจอ */
+    width: 100vw;  /* ให้ขนาดเต็มหน้าจอ */
+    position: relative;
+}
+
+/* เลเยอร์ของภาพซ้อนกัน */
+.images {
+    position: absolute; /* ใช้ absolute เพื่อให้ภาพซ้อนกัน */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* จัดกลางภาพ */
+    width: 100vw; /* ให้กว้างเต็มหน้าจอ */
+    height: 100vh; /* ให้สูงเต็มหน้าจอ */
+}
+
+/* ขนาดของภาพให้เท่ากัน */
+.image {
+    width: 100%;  /* ให้กว้างเต็มหน้าจอ */
+    height: 100%; /* ให้สูงเต็มหน้าจอ */
+    object-fit: cover; /* ให้รูปครอบคลุมทั้งจอโดยไม่เสียสัดส่วน */
+    position: absolute; /* ให้ภาพซ้อนกัน */
+    top: 0;
+    left: 0;
+}
+
+/* กำหนด z-index ให้รูปภาพตามลำดับ */
+#image1 {
+    z-index: 1; /* รูปแรกอยู่ล่างสุด */
+}
+
+#image2 {
+    z-index: 2; /* รูปที่สองอยู่ด้านบนรูปแรก */
+    animation: blink-animation 1s infinite alternate; /* การทำให้ image2 กระพริบ */
+}
+
+#image3 {
+    z-index: 3; /* รูปที่สามอยู่ด้านบนรูปที่สอง */
+}
+
+/* การทำให้ image2 กระพริบ */
+@keyframes blink-animation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ปุ่มเป็นรูปภาพและอยู่กลางหน้าจอ */
+.home-button {
+    position: absolute;
+    top: 50%; /* อยู่กลางในแนวตั้ง */
+    left: 50%; /* อยู่กลางในแนวนอน */
+    transform: translate(-50%, -50%); /* จัดกลางจากตำแหน่งที่ตั้ง */
+    z-index: 4; /* ให้ปุ่มอยู่บนสุด */
+}
+
+/* ขยับปุ่มลงมาเล็กน้อย */
+.home-button {
+    top: 80%; /* ขยับลงจากกลาง 5% */
+}
+
+/* กำหนดขนาดของภาพในปุ่ม */
+.home-button img {
+    width: 80px;  /* กำหนดขนาดความกว้างของปุ่ม */
+    height: auto;   /* กำหนดขนาดความสูงของปุ่ม */
+    cursor: pointer; /* แสดง cursor เป็น pointer เมื่อ hover ที่ปุ่ม */
+}
+
+.home-button:hover img {
+    transform: scale(1.1);
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission SafeZone</title>
+    <link rel="stylesheet" href="public/css/lesson1Style.css">
+    <style>
+      .page { display: none; } /* ซ่อนทุกหน้า */
+      .active { display: block; } /* แสดงเฉพาะหน้าที่ active */
+    </style>
+</head>
+<body>
+  <div id="page1" class="page active">
+    <img src="assets/DressUp_bg-01.png" alt="Background" class="background">
+    <div id="popup" class="popup">
+        <div class="popup-content">
+          <button id="close-btn" class="close-btn">
+            <img src="assets/dressup/ok-btn.png" alt="Close">
+          </button>
+          <img id="popup-image" src="assets/dressup/popup_ls1.png" alt="Pop-up Image">
+        </div>
+      </div>
+
+    <div class="game-container">
+        <div class="character">
+            <img id="base" src="assets/dressup/girl.png" alt="Character">
+            <img id="hair_front" src="assets/dressup/hair1_front.png" alt="Front Hair">
+            <img id="hair_back" src="assets/dressup/hair1_back.png" alt="Back Hair">
+            <img id="outfit" src="assets/dressup/outfit1.png" alt="Outfit">
+            <img id="shoes" src="assets/dressup/shoes1.png" alt="Shoes">
+            <img id="accessory" src="assets/dressup/accessory1.png" alt="Accessory">
+        </div>
+    </div>
+    <div class="buttons">
+        <button onclick="changeItem('hair')"><img src="assets/dressup/hair-button.png" alt="Change Hair"></button>
+        <button onclick="changeItem('outfit')"><img src="assets/dressup/clothes-button.png" alt="Change Outfit"></button>
+        <button onclick="changeItem('shoes')"><img src="assets/dressup/shoe-button.png" alt="Change Shoes"></button>
+        <button onclick="changeItem('accessory')"><img src="assets/dressup/ac-button.png" alt="Change Accessory"></button>
+    </div>
+
+    <button class="next-page-btn" onclick="showPage('page2')">
+      <img src="assets/finish-btn.png" alt="Next">
+    </button>  
+    </div>
+    
+  <!-- หน้า 2 -->
+  <div id="page2" class="page">
+    <img src="assets/LvDone/lv1.png" class="background layer3">
+    <img src="assets/LvDone/shadow.png" class="background layer2">
+    <img src="assets/LvDone/bg.png" class="background layer1">
+
+    <a href="map.html">
+      <img src="assets/next-btn.png" alt="Next Button" class="next-button">
+    </a>
+
+    </div>
+
+  <script>
+    function showPage(pageId) {
+        // ซ่อนทุกหน้า
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        // แสดงหน้าใหม่ที่ต้องการ
+        document.getElementById(pageId).classList.add('active');
+
+        // เมื่อถึงหน้า page2 ให้แสดงพลุ
+        if (pageId === 'page2') {
+            manager.addConfetti();  // เรียกใช้ฟังก์ชันเพื่อแสดงพลุใน page2
+        }
+    }
+  </script>
+
+  <style>
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s;
+    }
+
+    .layer1, .layer4 {
+      opacity: 1;
+    }
+  </style>
+  
+
+    <script src="js/script2.js"></script>
+
+    <!-- เพลงเปิดตั้งแต่เริ่ม -->
+<audio id="butterflies-music" autoplay loop>
+  <source src="assets/butterflies.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- เพลงเล่นตอน page2 -->
+<audio id="background-music">
+  <source src="assets/tada-fanfare-a-6313.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+    
+
+</body>
+</html>

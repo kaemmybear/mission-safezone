@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Mission SafeZone</title>
+    <link rel="stylesheet" href="public/css/game1.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <img id="situation-image" src="assets/LV2/situation1.png" alt="สถานการณ์">
+    
+        <div id="buttons">
+            <img src="assets/LV2/btn-correct.png" class="answer-button" id="btn-correct" alt="ปุ่มถูก">
+            <img src="assets/LV2/btn-wrong.png" class="answer-button" id="btn-wrong" alt="ปุ่มผิด">
+        </div>
+    
+        <div id="popup-container">
+            <img id="popup-correct" class="popup" src="assets/LV2/popup-correct.png" alt="ถูก">
+            <img id="popup-wrong" class="popup" src="assets/LV2/popup-wrong.png" alt="ผิด">
+        </div>
+    </div>
+
+    <div id="reward-screen">
+        <div id="reward-images-container">
+            <img id="reward-image-2" src="assets/LvDone/lv2.png" alt="Reward Image 2">
+            <img id="reward-image-1" src="assets/LvDone/bg.png" alt="Reward Image 1">
+        </div>
+
+        <!-- Container สำหรับพลุ -->
+        <div id="confetti-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+        <button onclick="resetGame()">กลับไปเล่นใหม่</button>
+
+        <a href="map.html">
+            <img src="assets/next-btn.png" alt="Next Button" class="next-button">
+        </a>
+
+    </div>
+
+<script src="js/script-game1.js"></script>
+
+<audio autoplay loop>
+    <source src="assets/fun-times-with-the-guys-223972.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+</body>
+</html>

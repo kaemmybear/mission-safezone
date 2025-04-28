@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission SafeZone</title>
+    <link rel="stylesheet" href="public/css/lesson2Style.css">
+</head>
+<body>
+    <div id="page1" class="page">
+    <div class="container">
+        <img src="assets/ls1_bg.png" alt="Background" class="background">
+
+        <!-- ปุ่มไป Page 2 -->
+        <button id="goto-page2" class="goto-btn">
+            <img src="assets/next-btn.png" alt="Next">
+          </button>  
+
+        <div id="popupIn" class="popupIn">
+            <div class="popupIn-content">
+              <button id="close-btn2" class="close-btn2">
+                <img src="assets/dressup/ok-btn.png" alt="Close">
+              </button>
+
+              <img id="popup2-image" src="assets/LV2/popup.png" alt="Pop-up2 Image">
+            </div>
+        </div>
+    
+        <!-- ตัวละครทั้งสอง -->
+        <div class="character-wrapper">
+    
+            <!-- ตัวละครด้านหน้า -->
+            <div class="character">
+                <img src="assets/body.png" alt="Character" id="character">
+    
+                <!-- วงกลมเป็นปุ่ม -->
+                <div class="circle orange" id="head"></div>
+                <div class="circle green" id="hand1"></div>
+                <div class="circle green" id="hand2"></div>
+                <div class="circle red" id="mouth"></div>
+                <div class="circle orange" id="face"></div>
+                <div class="circle orange" id="neck"></div>
+                <div class="circle orange" id="shoulder1"></div>
+                <div class="circle orange" id="shoulder2"></div>
+                <div class="circle red" id="chest"></div>
+                <div class="circle orange" id="belly"></div>
+                <div class="circle red" id="sex"></div>
+                <div class="circle orange" id="thigh1"></div>
+                <div class="circle orange" id="thigh2"></div>
+                <div class="circle orange" id="foot1"></div>
+                <div class="circle orange" id="foot2"></div>
+            </div>
+
+            <!-- ตัวละครด้านหลัง -->
+            <div class="character back-character">
+                <img src="assets/bodyback.png" alt="Character Back" id="character-back">
+
+                <!-- ปุ่มวงกลมสำหรับด้านหลัง -->
+                <div class="circle orange" id="back-head"></div>
+                <div class="circle orange" id="back-neck"></div>
+                <div class="circle orange" id="back-shoulder1"></div>
+                <div class="circle orange" id="back-shoulder2"></div>
+                <div class="circle red" id="back-back"></div>
+                <div class="circle red" id="back-butt"></div>
+                <div class="circle green" id="back-hand1"></div>
+                <div class="circle green" id="back-hand2"></div>
+                <div class="circle orange" id="back-thigh1"></div>
+                <div class="circle orange" id="back-thigh2"></div>
+                <div class="circle orange" id="back-foot1"></div>
+                <div class="circle orange" id="back-foot2"></div>
+            </div>
+
+        </div>
+    
+        <!-- Popup -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <img id="popup-image" src="" alt="Pop-up image" />
+                <img src="assets/close-icon.png" alt="Close" class="close-btn" onclick="closePopup()">
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg">
+        <div class="guide"><img src="assets/ray_ls1.png" alt="Ray" class="ray"></div>
+    </div>
+    </div>
+
+    <!-- หน้า Page 2 -->
+    <div id="page2" class="page" style="display: none;"> <!-- ซ่อนหน้า 2 ไว้ก่อน -->
+        <div class="container">
+            <img src="assets/LvDone/lv3.png" class="background-image layer3">
+            <img src="assets/LvDone/shadow.png" class="background-image layer2">
+            <img src="assets/LvDone/bg.png" class="background-image layer1">
+
+        </div>
+        <a href="map.html">
+            <img src="assets/next-btn.png" alt="Next Button" class="next-button">
+        </a>
+    </div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        "use strict";
+        
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        
+        // ฟังก์ชันการเปลี่ยนไป Page 2
+        document.getElementById('goto-page2').addEventListener('click', function() {
+          // ซ่อน page1 และแสดง page2
+          page1.style.display = 'none';
+          page2.style.display = 'block';
+      
+          // เล่นเพลง tada-fanfare-a-6313.mp3 เมื่อเข้า page 2
+          const tadaMusic = document.getElementById('tada-music');
+          tadaMusic.play().catch(error => {
+            console.log('Error playing tada-fanfare-a-6313.mp3:', error);
+          });
+      
+          // เรียกพลุ หลังเปลี่ยนหน้า
+          manager.addConfetti();
+        });
+      </script>
+      
+      <!-- เพลงที่เล่นตลอด -->
+      <audio id="butterflies-music" autoplay loop>
+          <source src="assets/giggly-bubbles-222533.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+      </audio>
+      
+      <!-- เพลงที่เล่นเฉพาะเมื่อเข้า page 2 -->
+      <audio id="tada-music">
+          <source src="assets/tada-fanfare-a-6313.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+      </audio>
+      
+    
+        
+
+</body>
+</html>
