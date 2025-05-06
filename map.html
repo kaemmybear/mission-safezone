@@ -6,35 +6,39 @@
     <title>Game Map</title>
     <link rel="stylesheet" href="public/css/mapStyle.css">
 </head>
+
 <body>
     <div class="container">
         <div class="item">
-                <img src="assets/icon1.png" class="icon">
-            <a href="lesson1.html">
+            <img src="assets/icon1.png" class="icon">
+            <a id="stage1Link" href="lesson1.html">
                 <img src="assets/building1.png" class="container b1">
             </a>
         </div>
         <div class="item">
-                <img src="assets/icon2.png" class="icon">
-            <a href="lesson2.html">
+            <img src="assets/icon2.png" class="icon">
+            <a id="stage2Link" class="locked" href="lesson2.html">
                 <img src="assets/building2.png" class="container b2">
             </a>
         </div>
         <div class="item">
-                <img src="assets/icon3.png" class="icon">
-            <a href="lesson3.html">
+            <img src="assets/icon3.png" class="icon">
+            <a id="stage3Link" class="locked" href="lesson3.html">
                 <img src="assets/building3.png" class="container b3">
             </a>
         </div>
         <div class="item">
-                <img src="assets/icon4.png" class="icon">
-            <a href="game1.html">
+            <img src="assets/icon4.png" class="icon">
+            <a id="stage4Link" class="locked" href="game1.html">
                 <img src="assets/building4.png" class="container b4">
             </a>
         </div>
-        <a href="end.html">
+        
+        <!-- ปุ่มกลับหน้า Home (ล็อกไว้จนกว่าจะเล่นครบ 4 ด่าน) -->
+        <a id="homeButton" class="locked" href="end.html">
             <img src="assets/finish-button.png" alt="Finish Button" class="finish-button">
         </a>
+        
     </div>
     <div class="bg">
         <div class="guide"><img src="assets/ray_map.png" alt="Ray" class="ray"></div>
@@ -45,6 +49,30 @@
         <source src="assets/bgMusic.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
+
+      <script>
+        // ปลดล็อกตาม localStorage
+        if (localStorage.getItem("stage1Cleared") === "true") {
+          document.getElementById("stage2Link").classList.remove("locked");
+        }
+        if (localStorage.getItem("stage2Cleared") === "true") {
+          document.getElementById("stage3Link").classList.remove("locked");
+        }
+        if (localStorage.getItem("stage3Cleared") === "true") {
+          document.getElementById("stage4Link").classList.remove("locked");
+        }
+      
+        // ถ้าผ่านครบทุกด่าน ให้ปลดล็อกปุ่มกลับ home
+        if (
+          localStorage.getItem("stage1Cleared") === "true" &&
+          localStorage.getItem("stage2Cleared") === "true" &&
+          localStorage.getItem("stage3Cleared") === "true" &&
+          localStorage.getItem("stage4Cleared") === "true"
+        ) {
+          document.getElementById("homeButton").classList.remove("locked");
+        }
+      </script>
+      
 
 </body>
 </html>

@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Mission SafeZone</title>
     <link rel="stylesheet" href="public/css/game1.css">
+    <link rel="icon" type="image/png" href="assets/logo.svg" />
 </head>
 <body>
+    <div id="first-time-popup" class="popup2 show">
+        <div class="popup-content">
+            <img src="assets/popupGame.png" alt="Welcome Image" class="popup-image">
+            <button id="close-popup" class="close-btn">
+                <img src="assets/dressup/ok-btn.png" alt="Close" class="close-icon">
+            </button>
+        </div>
+    </div>
+    
 
     <div id="game-container">
         <img id="situation-image" src="assets/LV2/situation1.png" alt="สถานการณ์">
@@ -23,7 +33,8 @@
 
     <div id="reward-screen">
         <div id="reward-images-container">
-            <img id="reward-image-2" src="assets/LvDone/lv2.png" alt="Reward Image 2">
+            <img id="reward-image-3" src="assets/LvDone/lv2.png" alt="Reward Image 3">
+            <img id="reward-image-2" src="assets/LvDone/shadow.png" alt="Reward Image 2">
             <img id="reward-image-1" src="assets/LvDone/bg.png" alt="Reward Image 1">
         </div>
 
@@ -31,11 +42,25 @@
         <div id="confetti-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
         <button onclick="resetGame()">กลับไปเล่นใหม่</button>
 
-        <a href="map.html">
+        <a href="map.html" onclick="markStageCleared(4)">
             <img src="assets/next-btn.png" alt="Next Button" class="next-button">
-        </a>
+          </a>          
 
     </div>
+
+    <audio id="sound-correct">
+        <source src="assets/LV2/correct.mp3" type="audio/mp3">
+    </audio>
+    
+    <audio id="sound-wrong">
+        <source src="assets/LV2/wrong.m4a" type="audio/mp3">
+    </audio>
+
+    <script>
+        function markStageCleared(stageNumber) {
+          localStorage.setItem(`stage${stageNumber}Cleared`, "true");
+        }
+      </script>
 
 <script src="js/script-game1.js"></script>
 

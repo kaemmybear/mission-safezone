@@ -43,7 +43,7 @@ body, html {
 
 #image2 {
     z-index: 2; /* รูปที่สองอยู่ด้านบนรูปแรก */
-    animation: blink-animation 1s infinite alternate; /* การทำให้ image2 กระพริบ */
+    animation: blink-animation 0.5s infinite alternate; /* การทำให้ image2 กระพริบ */
 }
 
 #image3 {

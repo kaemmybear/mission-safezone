@@ -13,9 +13,18 @@ const popupWrong = document.getElementById('popup-wrong');
 const rewardScreen = document.getElementById('reward-screen');
 
 function checkAnswer(isCorrect) {
-    const correct = situations[currentIndex].answer === (isCorrect ? 'correct' : 'wrong');
-    showPopup(correct); // ส่งค่าที่เหมาะสม
+  const correct = situations[currentIndex].answer === (isCorrect ? 'correct' : 'wrong');
+
+  // เล่นเสียงตามความถูกต้อง
+  if (correct) {
+      document.getElementById("sound-correct").play();
+  } else {
+      document.getElementById("sound-wrong").play();
+  }
+
+  showPopup(correct); // ส่งค่าที่เหมาะสมเพื่อแสดง popup
 }
+
 
 function showPopup(isCorrect) {
     const popupContainer = document.getElementById('popup-container');
@@ -339,3 +348,22 @@ function playConfettiMusic() {
     const confettiSound = new Audio('assets/tada-fanfare-a-6313.mp3');
     confettiSound.play();
 }
+
+// ตรวจสอบว่าเป็นครั้งแรกที่เข้ามาในเว็บไซต์หรือไม่
+const firstTimePopup = document.getElementById('first-time-popup');
+const closePopupButton = document.getElementById('close-popup');
+
+// ใช้ LocalStorage ในการเก็บสถานะการเปิดเว็บไซต์ครั้งแรก
+if (!localStorage.getItem('')) {
+    firstTimePopup.classList.add('show');  // แสดงป็อปอัพ
+    localStorage.setItem('firstTime', 'true');  // บันทึกว่าผู้ใช้เคยเข้ามาแล้ว
+}
+
+// ฟังก์ชันในการปิดป็อปอัพ
+closePopupButton.addEventListener('click', () => {
+    firstTimePopup.classList.remove('show');  // ซ่อนป็อปอัพ
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ใส่โค้ดตรวจ localStorage และ closePopupButton.addEventListener ในนี้
+});

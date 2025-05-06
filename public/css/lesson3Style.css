@@ -9,7 +9,7 @@ body, html {
   /* Intro section */
 .intro-container {
   text-align: center;
-  margin: 100px auto;
+  margin: 150px auto;
   
 }
 
@@ -20,35 +20,43 @@ body, html {
   width: 100%;
   height: 100%;
   object-fit: cover; /* ให้ภาพขยายเต็มพื้นที่ */
-  z-index: -2; /* ให้ภาพอยู่เบื้องหลังเนื้อหาภายใน */
+  z-index: -3; /* ให้ภาพอยู่เบื้องหลังเนื้อหาภายใน */
 }
 
 .layer1 { z-index: -2;}
 .layer2 { 
     z-index: -1;
+    animation: blink-animation 0.5s infinite alternate;
 }
 .layer3 { z-index: 0;}
+.layer5 { z-index: -1;}
 
-@keyframes blink {
-  0% {
-    opacity: 1; /* แสดงเต็มที่ */
-  }
+@keyframes blink-animation {
   50% {
-    opacity: 0; /* ซ่อนไป */
+      opacity: 1;
   }
   100% {
-    opacity: 1; /* กลับมาแสดงเต็มที่ */
+      opacity: 0.3;
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1; /* แสดงเต็มที่ */
+  }
+  50%, 100% {
+    opacity: 0; /* กลับมาแสดงเต็มที่ */
   }
 }
 
 .layer4 {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   animation: blink 2s infinite; /* กระพริบทุกๆ 1 วินาที */
 }
 
 .intro-text {
-  font-size: 25px;
+  font-size: 30px;
   font-family: 'mali', sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
@@ -229,7 +237,7 @@ body, html {
 
 .map-button {
   position: fixed;
-  bottom: 10vh; /* ปรับตำแหน่งให้สัมพันธ์กับขนาดหน้าจอ */
+  bottom: 15vh; /* ปรับตำแหน่งให้สัมพันธ์กับขนาดหน้าจอ */
   left: 50%;
   transform: translate(-50%, -50%);
   background: none;

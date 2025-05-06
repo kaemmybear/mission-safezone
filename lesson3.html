@@ -17,7 +17,8 @@
         <img id="popup-image" src="assets/LV3/popup.png" alt="Pop-up Image">
       </div>
     </div>
-    <img src="assets/LV3/word.png" alt="Background" class="background-image layer4">
+    <img src="assets/LV3/word.png" alt="Background" class="background-image layer5">
+    <img src="assets/LV3/bgIn2.png" alt="Background" class="background-image layer4">
     <img src="assets/LV3/bgIn.png" alt="Background" class="background-image">
     <div class="intro-text" id="introText">สวัสดีจ้า! ฉันชื่อเชอรี่ เป็นผู้พิทักษ์ที่คอยดูแลเด็กๆ ทุกคน</div>
     <button id="nextBtn" class="next-button">NEXT</button>
@@ -59,7 +60,7 @@
     <img src="assets/LvDone/shadow.png" class="background-image layer2">
     <img src="assets/LvDone/bg.png" class="background-image layer1">
 
-    <a href="map.html">
+    <a href="map.html" onclick="markStageCleared(3)">
       <img src="assets/next-btn.png" alt="Map Button" class="map-button">
     </a>
 
@@ -124,6 +125,10 @@
   
     // เริ่มต้นแนะนำตัว
     showIntroStep(introStep);
+
+    function markStageCleared(stageNumber) {
+    localStorage.setItem(`stage${stageNumber}Cleared`, "true");
+  }
   </script>
 
   <audio autoplay loop>

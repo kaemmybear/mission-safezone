@@ -13,6 +13,9 @@
 <body>
   <div id="page1" class="page active">
     <img src="assets/DressUp_bg-01.png" alt="Background" class="background">
+    <div class="guide">
+      <div class="guide"><img src="assets/dressup/guide.png" alt="Rguide" class="Rguide"></div>
+    </div>
     <div id="popup" class="popup">
         <div class="popup-content">
           <button id="close-btn" class="close-btn">
@@ -50,7 +53,7 @@
     <img src="assets/LvDone/shadow.png" class="background layer2">
     <img src="assets/LvDone/bg.png" class="background layer1">
 
-    <a href="map.html">
+    <a href="map.html" onclick="markStageCleared(1)">
       <img src="assets/next-btn.png" alt="Next Button" class="next-button">
     </a>
 
@@ -68,6 +71,9 @@
             manager.addConfetti();  // เรียกใช้ฟังก์ชันเพื่อแสดงพลุใน page2
         }
     }
+    function markStageCleared(stageNumber) {
+    localStorage.setItem(`stage${stageNumber}Cleared`, "true");
+  }
   </script>
 
   <style>

@@ -89,14 +89,14 @@
     <!-- หน้า Page 2 -->
     <div id="page2" class="page" style="display: none;"> <!-- ซ่อนหน้า 2 ไว้ก่อน -->
         <div class="container">
-            <img src="assets/LvDone/lv3.png" class="background-image layer3">
+            <img src="assets/LvDone/lv2.png" class="background-image layer3">
             <img src="assets/LvDone/shadow.png" class="background-image layer2">
             <img src="assets/LvDone/bg.png" class="background-image layer1">
 
         </div>
-        <a href="map.html">
+        <a href="map.html" onclick="markStageCleared(2)">
             <img src="assets/next-btn.png" alt="Next Button" class="next-button">
-        </a>
+          </a>
     </div>
 
     <script src="js/script.js"></script>
@@ -122,6 +122,10 @@
           // เรียกพลุ หลังเปลี่ยนหน้า
           manager.addConfetti();
         });
+        
+        function markStageCleared(stageNumber) {
+        localStorage.setItem(`stage${stageNumber}Cleared`, "true");
+    }
       </script>
       
       <!-- เพลงที่เล่นตลอด -->
