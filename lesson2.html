@@ -139,9 +139,37 @@
           <source src="assets/tada-fanfare-a-6313.mp3" type="audio/mp3">
           Your browser does not support the audio element.
       </audio>
-      
-    
-        
 
+      <!-- เสียงสำหรับแต่ละสี -->
+        <audio id="sound-warning">
+        <source src="assets/sound-warning.mp3" type="audio/mp3">
+        </audio>
+
+        <audio id="sound-careful">
+        <source src="assets/sound-careful.mp3" type="audio/mp3">
+        </audio>
+
+        <audio id="sound-safe">
+        <source src="assets/sound-safe.mp3" type="audio/mp3">
+        </audio>
+
+        <script>
+            // จับทุกวงกลมที่มี class "circle"
+            const circles = document.querySelectorAll('.circle');
+          
+            circles.forEach(circle => {
+              circle.addEventListener('click', () => {
+                // เช็คว่า circle มี class สีอะไร
+                if (circle.classList.contains('red')) {
+                  document.getElementById('sound-warning').play();
+                } else if (circle.classList.contains('orange')) {
+                  document.getElementById('sound-careful').play();
+                } else if (circle.classList.contains('green')) {
+                  document.getElementById('sound-safe').play();
+                }
+              });
+            });
+        </script>
+      
 </body>
 </html>
