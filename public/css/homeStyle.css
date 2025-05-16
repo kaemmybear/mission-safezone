@@ -54,7 +54,7 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 34vw;
-    max-width: 550px;
+    max-width: 600px;
     opacity: 0.5;
     z-index: 0;
 }
@@ -62,7 +62,7 @@ html, body {
 .logo {
     position: relative;
     width: 34vw;
-    max-width: 550px;
+    max-width: 600px;
     z-index: 1;
 }
 
